@@ -26,4 +26,4 @@ def csv2dict(filename):
 studentsInfoAsDictionaries = csv2dict("records.csv")
 
 
-
+# The github repo is called SC1003_MINI_PROJECT
