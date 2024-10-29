@@ -25,9 +25,5 @@ def csv2dict(filename):
 
 studentsInfoAsDictionaries = csv2dict("records.csv")
 
-def tutorialGroupFilter(data):
-    for i in data:
-        if i["Tutorial Group"]
-
 
 
