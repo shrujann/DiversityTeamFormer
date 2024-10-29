@@ -97,8 +97,10 @@ gpasortedTutorialGroups = gpasort(sortedTutorialGroups)
 
 def teamFormation(list):
     team = []
-    counter = 0
     teamCounter = 0
+    counter = 0
+    teamFormedLists = []
+
     for i in list:
         for j in range(len(i)):
             if j % 2 == 0:
@@ -106,21 +108,33 @@ def teamFormation(list):
                 i.pop(0)
                 counter += 1
             if j % 2 == 1:
-                team.append((len(i) - 1))
-                i.pop((len(i) - 1))
+                team.append(i[-1])
+                i.pop(-1)
                 counter += 1
             if counter % 5 == 0:
                 teamCounter += 1
                 if teamCounter % 10 == 0:
-                    teamCounter = 1
                     for k in team:
                         k["Team"] = teamCounter
+                    teamCounter = 1
+                    teamFormedLists.append(team)
+                    team = []
                 else:
                     for k in team:
                         k["Team"] = teamCounter
+                    teamFormedLists.append(team)
+                    team = []
+        team = []
+        teamCounter = 0
+    print("All the teams have been formed")
+    return teamFormedLists
 
-teamFormation(gpasortedTutorialGroups)
-print(gpasortedTutorialGroups)
+x = teamFormation(gpasortedTutorialGroups)
+
+
+            
+
+
 
 
 
