@@ -27,19 +27,19 @@ def csv2dict(filename):
 
 studentsInfoAsDictionaries = csv2dict("records.csv")
 
-def merge_sort(list):
+def merge_sort(list, key):
     if len(list) <= 1:
         return list
     mid = len(list) // 2
-    left = merge_sort(list[:mid])
-    right = merge_sort(list[mid:])
-    return merge(left,right)
+    left = merge_sort(list[:mid],key)
+    right = merge_sort(list[mid:],key)
+    return merge(left,right, key)
 
-def merge(left, right):
+def merge(left, right, key):
     result = []
     i = j = 0
     while i < len(left) and j < len(right):
-        if left[i]["Tutorial Group"] <= right[j]["Tutorial Group"]:
+        if left[i][key] <= right[j][key]:
             result.append(left[i])
             i += 1
         else:
@@ -50,7 +50,7 @@ def merge(left, right):
     return result
 
 print(" Program will now attempt to use merge-sorting on the student data stored in the list ")
-sortedStudentInfoAsDictionaries = merge_sort(studentsInfoAsDictionaries)
+sortedStudentInfoAsDictionaries = merge_sort(studentsInfoAsDictionaries, "Tutorial Group")
 print(" Merge-sorting sucessful! ")
 
 print(" Attempting to save merge-sorted CSV results into file 'sortedRecords' ")
@@ -79,8 +79,32 @@ print(" Attempting to sort the values into 120 lists with each tutorial group ")
 sortedTutorialGroups = studentsAsTutorialGroupLists(sortedStudentInfoAsDictionaries)
 print(" Sucessfully seperated them into their assigned tutorial groups ")
 
+# Now that we have the 120 sorted tutorial groups in 120 different lists we can attempt on forming the 10 teams in each group.
+def gpasort(list):
+    sortedListByGpa = []
+    print(" Attempting to sort the tutorial groups by GPA.")
+    for i in list:
+        sorted_tutorialGroup = merge_sort(i, "CGPA")
+        sortedListByGpa.append(sorted_tutorialGroup)
+    print(" Sucessfully sorted all of the groups by GPA ")
+    return sortedListByGpa
+
+gpasortedTutorialGroups = gpasort(sortedTutorialGroups)
+
+
+# Now that it is sorted by GPA in each tutorial group we can proceed. gpasortedTutorialGroups[0] -> Tut Group 1
+# Thoughts:
+# Add the lowest gpa into the group, subsequently add the highest GPA. Continue for the first 5. Repeat.
 
 
 
+    
+
+
+
+
+
+
+                
 
 
