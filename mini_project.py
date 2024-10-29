@@ -91,10 +91,38 @@ def gpasort(list):
 
 gpasortedTutorialGroups = gpasort(sortedTutorialGroups)
 
-
-# Now that it is sorted by GPA in each tutorial group we can proceed. gpasortedTutorialGroups[0] -> Tut Group 1
+# Now that it is sorted by GPA in each tutorial group we can proceed.
 # Thoughts:
 # Add the lowest gpa into the group, subsequently add the highest GPA. Continue for the first 5. Repeat.
+
+def teamFormation(list):
+    team = []
+    counter = 0
+    teamCounter = 0
+    for i in list:
+        for j in range(len(i)):
+            if j % 2 == 0:
+                team.append(i[0])
+                i.pop(0)
+                counter += 1
+            if j % 2 == 1:
+                team.append((len(i) - 1))
+                i.pop((len(i) - 1))
+                counter += 1
+            if counter % 5 == 0:
+                teamCounter += 1
+                if teamCounter % 10 == 0:
+                    teamCounter = 1
+                    for k in team:
+                        k["Team"] = teamCounter
+                else:
+                    for k in team:
+                        k["Team"] = teamCounter
+
+teamFormation(gpasortedTutorialGroups)
+print(gpasortedTutorialGroups)
+
+
 
 
 
@@ -107,4 +135,4 @@ gpasortedTutorialGroups = gpasort(sortedTutorialGroups)
 
                 
 
-# The github repo is called SC1003_MINI_PROJECT
+
