@@ -135,7 +135,7 @@ def teamFormation(list):
             if numberOfStudentsInTheTeam % 5 == 0:
                 numberOfTeams += 1
                 for k in team:
-                    k["Team"] = numberOfTeams
+                    k["Team Assigned"] = numberOfTeams
                 teamFormedLists.append(team)
                 team = []  # Reset team for the next team allocation
                 schoolCriteriaRelaxed = False # Reset for the next team
@@ -169,10 +169,10 @@ def main():
     print("\n Attempting to save allocated teams data into CSV file 'sortedteamRecords'...")
     # saves the new formed teams into sortedteamRecords.csv and creates a new column "Team Number"
     with open("sortedteamsRecords.csv", "w+") as target:
-        target.write("Tutorial Group,Team Number,Student ID,School,Name,Gender,CGPA\n")
+        target.write("Tutorial Group,Student ID,School,Name,Gender,CGPA, Team Assigned\n")
         for group in x:
             for student in group:
-                line = f"G-{student['Tutorial Group']},team {student['Team']},{student['Student ID']},{student['School']},{student['Name']},{student['Gender']},{student['CGPA']}\n"
+                line = f"G-{student['Tutorial Group']},{student['Student ID']},{student['School']},{student['Name']},{student['Gender']},{student['CGPA']},Team {student['Team Assigned']}\n"
                 target.write(line)
     print(" Stored sucessfully! \n")
 
